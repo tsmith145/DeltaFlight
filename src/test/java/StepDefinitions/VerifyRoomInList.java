@@ -84,7 +84,7 @@ public class VerifyRoomInList {
 	@And("I submit the booking")
 	public void i_submit_the_booking() {
 		
-		
+		//hello
 	 
 	}
 
