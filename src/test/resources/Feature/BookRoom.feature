@@ -35,9 +35,9 @@ Feature: Verify you can book a room from the non admin website
     And I set Accessible to true
     And I enter <roomnumber> and <price>
     And I hit create
-    Then success message appears
+    Then  booking is listed
 
     Examples: 
       | roomnumber | price |
-      |        107 |   321 |
+      |        108 |   326 |
      

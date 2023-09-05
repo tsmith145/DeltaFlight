@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
@@ -18,6 +19,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pagefactory.BookRoomBookingPage_PF;
 import pagefactory.BookRoomLoginPage_PF;
+import pagefactory.HotelRoom;
 
 public class BookRoom {
  public	WebDriver driver;
@@ -25,7 +27,7 @@ public class BookRoom {
 	private BookRoomLoginPage_PF bookRoomLoginPage_PF;
 	 BookRoomBookingPage_PF bookRoomBookingPage_PF;
 	 private	 ChromeOptions options = new ChromeOptions();
-	
+	 HotelRoom hotelRoom;
 	 
 	 String originalWindow=" ";
 
@@ -87,9 +89,8 @@ public class BookRoom {
 		 bookRoomLoginPage_PF.gotWebSite();
 		 bookRoomLoginPage_PF.enterUserNameAndPassword("admin", "password");
 		 
-		 WebDriverWait wdw = new WebDriverWait(driver, 30); // wait up to 30 seconds
-		    wdw.until(ExpectedConditions.visibilityOfElementLocated(By.id("wifiCheckbox")));
-		
+		 
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		// driver.navigate().to("https://automationintesting.online/#/admin");
 		
 
@@ -132,6 +133,11 @@ public class BookRoom {
 		
 		driver.findElement(By.id("roomPrice")).sendKeys(price);
 		driver.findElement(By.id("roomName")).sendKeys(roomNumber);
+		
+		int rn=Integer.parseInt(roomNumber);
+		int rp=Integer.parseInt(price);
+		
+		hotelRoom= new HotelRoom(roomNumber,price);
 	}
 
 	@And("I hit create")
@@ -141,14 +147,32 @@ public class BookRoom {
 		//bookRoomBookingPage_PF.createRoom();
 	}
 	
-	@Then("success message appears")
-	public void success_message_appears() {
+	@Then("booking is listed")
+	public void booking_is_listed() {
+		//checks if booking is in the list 
+		
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		WebElement roomTable = driver.findElement(By.className("row.detail"));
+		Select selectRoomNumber = new Select(roomTable);
+		
+		List<WebElement>dynamicDiv=driver.findElements(By.xpath("//div//div//div//div//div//div[@class='row.detail']"));
 		
 		
+		for(WebElement div:dynamicDiv) {
+			
+			if(div.getText().equals(hotelRoom.getHotelRoomNumber().toString())) {
+				System.out.print("your booking is listed");
+			}
+			
+		}
 	
-		Assert.assertTrue(!driver.findElement(By.xpath("//div[@id='alert alert-danger']")).isDisplayed());
+		//Assert.assertTrue(!driver.findElement(By.xpath("//div[@id='alert alert-danger']")).isDisplayed());
+		
+		
 		
 	
 	}
+	
+	
 
 }

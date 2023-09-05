@@ -1,5 +1,7 @@
 package StepDefinitions;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,16 +35,14 @@ public class VerifyRoomInList {
 		 System.setProperty("webdriver.chrome.driver", "C:/Users/Mjrlo/eclipse-workspace/CucumberJava/src/test/resources/drivers/chromedriver.exe");
 		 
 		 driver = new ChromeDriver(options);
+		 
+		 driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
 		// originalWindow = driver.getWindowHandle();
 		 bookRoomLoginPage_PF= new BookRoomLoginPage_PF(driver);
 		 
 		 bookRoomLoginPage_PF.gotWebSite();
 		 bookRoomLoginPage_PF.enterUserNameAndPassword("admin", "password");
 		 
-		 WebDriverWait wdw = new WebDriverWait(driver, 30);
-		 
-		  String roomNumberVariable=" ";
-		  String roomPriceVariable=" ";
 	      
 	    }
 	
@@ -50,12 +50,19 @@ public class VerifyRoomInList {
 	@Given("I navigated to the book page")
 	public void i_navigated_to_the_book_page() {
 		
+		
+		bookRoomBookingPage_PF = new BookRoomBookingPage_PF(driver);
+		
+		
+		
+		//driver.findElement(By.xpath("//div//div//button[text()='Book this room']")).click();
+		
 	}
 
 	@When("I choose settings")
 	public void i_choose_settings() {
-		driver.findElement(By.id("wifiCheckbox")).click();
-		
+	//	driver.findElement(By.id("wifiCheckbox")).click();
+		bookRoomBookingPage_PF.checkWifiBox();
 		
 	}
 
@@ -84,14 +91,14 @@ public class VerifyRoomInList {
 	@And("I submit the booking")
 	public void i_submit_the_booking() {
 		
-		
+		//helloll
 	 
 	}
 
 	@Then("my booking should be listed")
 	public void my_booking_should_be_listed() {
 	   driver.findElement(By.id("frontPageLink")).click();
-	   
+	  
 	}
 
 }
