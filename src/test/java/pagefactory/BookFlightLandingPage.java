@@ -12,111 +12,66 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import junit.framework.Assert;
 
 
-public class BookRoomBookingPage_PF {
+public class BookFlightLandingPage {
 
-	private WebDriver driver;
-		
-   
+	 private WebDriver driver;
 		
 		
-	@FindBy(xpath="//a[@id='frontPageLink']")
-	private	WebElement frontPageLink;
-		
-	@FindBy(id="roomName")	
-	WebElement txt_roomNumber;
+
 	
-	@FindBy(id="type")
-	WebElement roomTypeDropDown;
-	
-	@FindBy(id="accessible")
-	WebElement accessibleTrueFalse;
-	
-	@FindBy(id="roomPrice")
-	WebElement roomPriceText;
-	
-	
-	@FindBy(id="wifiCheckbox")
-	WebElement wifiCheckBox;
-	
-	@FindBy(id="safeCheckbox")
-	WebElement safeCheckbox;
-	
-	@FindBy(id="createRoom")
-	WebElement createRoomButton;
+	@FindBy(xpath="//span[normalize-space()='To']")
+    private WebElement _arrivalCityButton;
+
+    @FindBy(xpath="//span[normalize-space()='ATL']")
+    private WebElement _departureCityButton;
+
+    @FindBy(xpath="//div[@class='airport-lookup-tablist-container pl-0 pr-0 mt-2']")
+    private WebElement _destinationAlertBox;
+
+    @FindBy(id="search_input")
+    private  WebElement _destinationTextArea;
 	
 	//
 	
 	//Select selectRoomAccessibility = new Select(accessibleTrueFalse);
 		
-	public BookRoomBookingPage_PF(WebDriver driver1) {
+	public BookFlightLandingPage(WebDriver driver) {
 			
-			this.driver = driver1;
-			
-			
+			this.driver = driver;
+			PageFactory.initElements(driver, this);
 			
 			
 		}
 	
-	public BookRoomBookingPage_PF() {
-		
-		
-		
-		
+	public BookFlightLandingPage() {
 		
 		
 	}
 	
-	@SuppressWarnings("deprecation")
-	public void validateUserReachedBooking() {
-		
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		WebElement Category_Body = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("frontPageLink")));
-		
-		String frontPageSTring =frontPageLink.getText();
-		
-		String expectedFrontPageText= "Front Page";
-		Assert.assertEquals(frontPageSTring, expectedFrontPageText);
-		
-		  
-	}
-	
-	public void gotWebSite() {
-		
-		driver.navigate().to("https://automationintesting.online/#/admin");
-	}
-	public void enterRoomNumber(String numberForRoom) {
-		txt_roomNumber.sendKeys(numberForRoom);
-		
-	}
-	
-	public void selectRoomType() {
-		Select selectRoomType = new Select(roomTypeDropDown);
-		selectRoomType.selectByVisibleText("Family");
+	public void gotoDeltaWebsite() {
+		driver.navigate().to("https://www.delta.com/");
 	}
 	
 	
-	public void setRoomAccessibility() {
-		
-		Select selectRoomAccessibility = new Select(accessibleTrueFalse);
-		selectRoomAccessibility.selectByVisibleText("True");
-	}
+	public void ChooseDestination()
+    {
+        _arrivalCityButton.click();
+
+
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search_input")));
+      
+        
+
+        driver.switchTo().frame(_destinationAlertBox);
+
+        _destinationTextArea.sendKeys("MIA");
+
+    }
 	
-	public void enterRoomPrice(String numberForPrice) {
-		txt_roomNumber.sendKeys(numberForPrice);
-		
-	}
 	
-	public void checkWifiBox() {
-		wifiCheckBox.click();
-	}
 	
-	public void checkSafeBox() {
-		safeCheckbox.click();
-	}
-	
-	public void createRoom() {
-		createRoomButton.click();
-	}
 	
 
 }
