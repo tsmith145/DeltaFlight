@@ -56,7 +56,7 @@ public class searchRoundTripFlight {
 
 	@And("I select my departing and arriving dates")
 	public void i_select_my_departing_and_arriving_dates() {
-	   
+	   bookFlight.chooseDates();
 	}
 
 	@And("I hit the search button")
