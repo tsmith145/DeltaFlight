@@ -98,7 +98,13 @@ public class BookFlightLandingPage {
 		   driver.manage().window().setSize(new Dimension(1024, 768));
 		
 		 // wait.until(ExpectedConditions.elementToBeClickable(By.id("onetrust-accept-btn-handler")));
-		  
+		 	synchronized (_departureCityButton) {
+	        	try {
+	        		_departureCityButton.wait(10000);
+	        	} catch (InterruptedException e) {
+	        		e.printStackTrace();
+	        	}
+	        }
 		  
 		  driver.findElement(By.id("onetrust-accept-btn-handler")).click();
 	//   wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='To']")));
