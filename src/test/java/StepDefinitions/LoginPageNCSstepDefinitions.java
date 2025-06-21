@@ -27,7 +27,7 @@ public class LoginPageNCSstepDefinitions {
 	 WebDriver driver;
 	LoginPageNCS loginPage;
 	private	 ChromeOptions options = new ChromeOptions();
-    SoftAssert softAssert = new SoftAssert();
+    private SoftAssert softAssert = new SoftAssert();
  
 	
 

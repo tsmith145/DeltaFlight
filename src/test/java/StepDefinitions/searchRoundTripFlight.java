@@ -3,6 +3,7 @@ package StepDefinitions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.asserts.SoftAssert;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -18,6 +19,8 @@ public class searchRoundTripFlight {
 	 WebDriver driver;
 	BookFlightLandingPage bookFlight;
 	private	 ChromeOptions options = new ChromeOptions();
+    private SoftAssert softAssert = new SoftAssert();
+
 	
 
 	
@@ -38,14 +41,17 @@ public class searchRoundTripFlight {
 	@Given("I am on Delta.com")
 	public void i_am_on_delta_com() {
 		
+		
+		
         bookFlight.gotoDeltaWebsite();
+        bookFlight.acceptPopup();
 	  
 	}
 
 	@When("I select the round trip button")
 	public void i_select_the_round_trip_button() {
 	 
-		
+		bookFlight.selectRoundTrip();
 		
 	}
 
@@ -62,6 +68,7 @@ public class searchRoundTripFlight {
 	@And("I hit the search button")
 	public void i_hit_the_search_button() {
 	
+		bookFlight.submitSearch();
 	}
 
 	@Then("I should see My departing and arriving city in the top left div")

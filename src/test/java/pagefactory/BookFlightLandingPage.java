@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,15 +46,40 @@ public class BookFlightLandingPage {
   @FindBy(css=".search-flyout-close")
     private WebElement _closeDestinationTextAreaButton;
   
+  @FindBy(xpath="//a[@aria-label='19 July 2025, Saturday']")
+  private WebElement _july19Date;
   
+  @FindBy(xpath="//a[@aria-label='25 July 2025, Friday']")
+  private WebElement _july25Date;
+  
+  
+  @FindBy(css=".calDateSeparator")
+  private WebElement _datePicker;
+  
+  @FindBy(xpath="//button[@value='done']")
+  private WebElement _datePickerCloseOut;
   
   ////b[normalize-space()='Your username is invalid!']
   
   
+  @FindBy(id="selectTripType")
+  private WebElement _tripTypeSpinner;
   @FindBy(id="onetrust-accept-btn-handler")
   private WebElement _popUp;
-	//
-	
+  
+  
+  @FindBy(xpath="//div[@class='idp-error-tooltip']")
+  private WebElement _topPagePopUp;
+  
+  
+
+  @FindBy(id="ui-list-selectTripType0")
+  private WebElement _roundTripValue;
+  
+  @FindBy(id="btnSubmit")
+  private WebElement _submitSearchButton;
+  
+	JavascriptExecutor js;
 	//Select selectRoomAccessibility = new Select(accessibleTrueFalse);
 		
 	public BookFlightLandingPage(WebDriver driver) {
@@ -71,8 +97,42 @@ public class BookFlightLandingPage {
 	
 	public void gotoDeltaWebsite() {
 		driver.navigate().to("https://www.delta.com/");
+		driver.manage().window().maximize();
 	}
 	
+	public void acceptPopup() {
+		/*
+		 * driver.manage().window().maximize(); Wait<WebDriver> wait = new
+		 * WebDriverWait(driver, Duration.ofSeconds(12));
+		 * 
+		 * 
+		 * wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(
+		 * "onetrust-accept-btn-handler")));
+		 */
+			 
+		
+		
+		
+
+		 js= (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].click();", _popUp);
+		
+	
+		
+		
+	}
+	
+	public void selectRoundTrip() {
+		
+		
+		 Select select = new Select(_tripTypeSpinner);
+		 
+		 select.selectByVisibleText("Round Trip");
+		
+		// _topPagePopUp.click();
+		//_roundTripValue.click();
+		
+	}
 	
 	public void ChooseDestination()
     {
@@ -90,32 +150,18 @@ public class BookFlightLandingPage {
 		 * _destinationTextArea.sendKeys("HOU");
 		 * _closeDestinationTextAreaButton.click();
 		 */
-		driver.manage().window().setSize(new Dimension(1024, 768));
-	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-
-	//	   Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		   driver.manage().window().setSize(new Dimension(1024, 768));
 		
-		 // wait.until(ExpectedConditions.elementToBeClickable(By.id("onetrust-accept-btn-handler")));
-		 	synchronized (_departureCityButton) {
-	        	try {
-	        		_departureCityButton.wait(10000);
-	        	} catch (InterruptedException e) {
-	        		e.printStackTrace();
-	        	}
-	        }
-		  
-		  driver.findElement(By.id("onetrust-accept-btn-handler")).click();
+	  //span[@id='selectTripType-val']
+
 	//   wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='To']")));
 
-	    driver.findElement(By.xpath("//span[normalize-space()='To']")).click();
+		 	_arrivalCityButton.click();
 
 	  
 	    
 	// destination city text Alert box
-	    driver.findElement(By.id("search_input")).sendKeys("NYC");
-	    driver.findElement(By.id("search_input")).sendKeys(Keys.ENTER);
+	    _destinationTextArea.sendKeys("NYC");
+	    _destinationTextArea.sendKeys(Keys.ENTER);
 	    
       
         
@@ -126,37 +172,54 @@ public class BookFlightLandingPage {
 	   
 	   
 	    //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search_input")));
-	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+	    //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
 	///close the arriving city alert box (the x button)
-	    driver.findElement(By.cssSelector(".search-flyout-close")).click();
+	    _closeDestinationTextAreaButton.click();
 
     }
 	
 	
 	
 	public void chooseDates () {
-		Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".calDateSeparator")));
+		
 
-		   driver.findElement(By.cssSelector(".calDateSeparator")).click();
+		   _datePicker.click();
 
 		// the date July 21st
-		   wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@aria-label='19 July 2025, Saturday']")));
-		    driver.findElement(By.xpath("//a[@aria-label='19 July 2025, Saturday']")).click();
+		  driver.manage().window().maximize();
+		  
+		  
+		  
+		   _july19Date.click();
 
 		// the date July 25st
 		  //  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("25")));
-		    
-		    driver.manage().window().maximize();
-			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@aria-label='25 July 2025, Friday']")));
-		    driver.findElement(By.xpath("//a[@aria-label='25 July 2025, Friday']")).click();
+		 
+		   
+		   synchronized (_datePicker) { try { _datePicker.wait(3000);
+			 } catch (InterruptedException e) { e.printStackTrace(); } }
+		 
+			//_july25Date.click();
+			JavascriptExecutor js =  (JavascriptExecutor)driver;
+			
+			js.executeScript("arguments[0].click();", _july25Date);
+			
 		    
 		  //button[@value='done']elementToBeClickable
-		    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@value='done']")));
-		    driver.findElement(By.xpath("//button[@value='done']")).click();
+		    _datePickerCloseOut.click();
 		  //  driver.findElement(By.cssSelector(".donebutton")).click();
 		  //  driver.findElement(By.id("btn-book-submit")).click();
+	}
+	
+	
+	public void submitSearch() {
+		
+		JavascriptExecutor js =  (JavascriptExecutor)driver;
+		
+		js.executeScript("arguments[0].click();", _submitSearchButton);
+		
+	
 	}
 	
 	
