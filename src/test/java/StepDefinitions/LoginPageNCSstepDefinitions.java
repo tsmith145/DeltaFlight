@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -74,6 +75,7 @@ public class LoginPageNCSstepDefinitions {
 
 	@Then("I should get an invalid username error")
 	public void i_should_get_an_invalid_username_error() {
+		
        softAssert.assertTrue(loginPage.isUsernameErrorValid());
        
        
@@ -82,7 +84,15 @@ public class LoginPageNCSstepDefinitions {
 
 	@And("I should remain on the login page an not the profile page")
 	public void i_should_remain_on_the_login_page_an_not_the_profile_page() {
+		
+		String correctTitle="Test Login Page for Automation Testing Practice";
+	softAssert.assertEquals(loginPage.getWebTitle(), correctTitle);
 	  
+	}
+	@After 
+	public void tearDown1() {
+		softAssert.assertAll();
+		
 	}
 
 }

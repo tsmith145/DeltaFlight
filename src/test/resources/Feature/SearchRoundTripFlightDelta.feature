@@ -27,7 +27,7 @@ Feature: Search For Roundtrip flight
     And I select my arriving city 
     And I select my departing and arriving dates 
     And I hit the search button 
-    Then I should see My departing and arriving city in the top left div
+    Then I should be on the Flight Results Page
     And I should see the words round trip in the items list for each flight grid item
 
   

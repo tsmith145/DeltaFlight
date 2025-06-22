@@ -1,16 +1,19 @@
 package StepDefinitions;
 
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.asserts.SoftAssert;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pagefactory.BookFlightLandingPage;
+import pagefactory.BookFlightResultsPage;
 
 public class searchRoundTripFlight {
 	
@@ -20,6 +23,9 @@ public class searchRoundTripFlight {
 	BookFlightLandingPage bookFlight;
 	private	 ChromeOptions options = new ChromeOptions();
     private SoftAssert softAssert = new SoftAssert();
+    BookFlightResultsPage flightResult;
+    
+    TakesScreenshot screenShot;
 
 	
 
@@ -35,6 +41,7 @@ public class searchRoundTripFlight {
 		  options.addArguments("--remote-allow-origins=*");
 		  driver = new ChromeDriver(options);
 		  bookFlight = new BookFlightLandingPage(driver);
+		  flightResult= new BookFlightResultsPage(driver);
 	}
 	
 	
@@ -71,14 +78,26 @@ public class searchRoundTripFlight {
 		bookFlight.submitSearch();
 	}
 
-	@Then("I should see My departing and arriving city in the top left div")
-	public void i_should_see_my_departing_and_arriving_city_in_the_top_left_div() {
-	  
+	@Then("I should be on the Flight Results Page")
+	public void i_should_be_on_the_flight_results_page() {
+		
+		String expectedTitle="Flight Results : Find & Book Airline Tickets : Delta Air Lines";
+	  softAssert.assertEquals(flightResult.getWebsiteTitle(), expectedTitle);
+		/*
+		 * if(!flightResult.getWebsiteTitle().equals(expectedTitle)) { }
+		 */
 	}
 
 	@And("I should see the words round trip in the items list for each flight grid item")
 	public void i_should_see_the_words_round_trip_in_the_items_list_for_each_flight_grid_item() {
-	    
+	    softAssert.assertTrue(flightResult.isSearchPageRoundtrip());
+	}
+	
+	
+	@After 
+	public void tearDown() {
+		softAssert.assertAll();
+		
 	}
 
 

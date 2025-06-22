@@ -115,6 +115,13 @@ public class LoginPageNCS {
     	 
     	 return false;
     }
+    
+	public String getWebTitle() {
+		String websiteTitle = driver.getTitle();
+		
+		return websiteTitle;
+	}
+	 
 
 
 }
