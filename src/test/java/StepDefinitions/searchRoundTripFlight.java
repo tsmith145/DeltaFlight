@@ -26,6 +26,8 @@ public class searchRoundTripFlight {
     BookFlightResultsPage flightResult;
     
     TakesScreenshot screenShot;
+    
+    
 
 	
 
@@ -58,7 +60,7 @@ public class searchRoundTripFlight {
 	@When("I select the round trip button")
 	public void i_select_the_round_trip_button() {
 	 
-		bookFlight.selectRoundTrip();
+		bookFlight.searchMultiCity();
 		
 	}
 

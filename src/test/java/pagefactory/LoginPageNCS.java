@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPageNCS {
+public class LoginPageNCS  extends AbstractTest{
 	
 	private WebDriver driver;
 	

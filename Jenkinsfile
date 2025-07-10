@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 // Replace with your SCM details (e.g., Git, SVN)
-                git 'https://github.com/your-repo/your-cucumber-project.git'
+                git 'https://github.com/tsmith145/DeltaFlight.git'
             }
         }
 

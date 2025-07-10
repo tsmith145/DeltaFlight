@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -15,6 +16,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import pagefactory.AbstractTest;
 import pagefactory.BookFlightLandingPage;
 import pagefactory.LoginPageNCS;
 
@@ -29,23 +31,24 @@ public class LoginPageNCSstepDefinitions {
 	LoginPageNCS loginPage;
 	private	 ChromeOptions options = new ChromeOptions();
     private SoftAssert softAssert = new SoftAssert();
+    
  
-	
+  
 
 	
 	
 
 	
 	@Before
-	public void setupDriver(){
+	public void setupDriver() throws MalformedURLException{
 		System.setProperty("webdriver.chrome.driver", "C:/Users/Mjrlo/Downloads/newLocation/deltaChrome/chromedriver.exe");
 		
 		  options = new ChromeOptions();
 		  options.addArguments("--remote-allow-origins=*");
-		  driver = new ChromeDriver(options);
+		  driver = loginPage.getRemoteDriver();
 		  loginPage = new LoginPageNCS(driver);
-		  
-		  
+	      
+		   
 		
 	}
 	

@@ -1,6 +1,7 @@
 package pagefactory;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
@@ -24,7 +25,7 @@ public class BookFlightLandingPage {
 
 	 private WebDriver driver;
 		
-		
+	 private WebDriverWait wait;
 
 	
 	@FindBy(xpath="//span[normalize-space()='To']")
@@ -64,6 +65,8 @@ public class BookFlightLandingPage {
   
   @FindBy(id="selectTripType")
   private WebElement _tripTypeSpinner;
+ 
+  
   @FindBy(id="onetrust-accept-btn-handler")
   private WebElement _popUp;
   
@@ -79,13 +82,19 @@ public class BookFlightLandingPage {
   @FindBy(id="btnSubmit")
   private WebElement _submitSearchButton;
   
+  @FindBy(id="ui-list-selectTripType2")
+  private WebElement multiCitySelect;
+  
 	JavascriptExecutor js;
+
 	//Select selectRoomAccessibility = new Select(accessibleTrueFalse);
 		
 	public BookFlightLandingPage(WebDriver driver) {
 			
 			this.driver = driver;
 			PageFactory.initElements(driver, this);
+			
+			wait = new WebDriverWait(driver, Duration.ofSeconds(7));
 			
 			
 		}
@@ -127,12 +136,34 @@ public class BookFlightLandingPage {
 		
 		 Select select = new Select(_tripTypeSpinner);
 		 
+	
+		 
 		 select.selectByVisibleText("Round Trip");
 		
 		// _topPagePopUp.click();
 		//_roundTripValue.click();
 		
 	}
+	
+public void searchMultiCity() {
+
+		Select select = new Select(_tripTypeSpinner);
+		
+		List<WebElement> selectElements = select.getOptions();
+		
+		for (WebElement e:selectElements ) {
+			System.out.println(e.getText());
+		}
+	
+		
+		driver.findElement(By.id("selectTripType-val")).click();
+		//wait.until(ExpectedConditions.elementToBeClickable(By.id("ui-list-selectTripType2")));
+		
+		js.executeScript("arguments[0].click();", multiCitySelect);
+		//select.selectByVisibleText("Multi-City");
+		
+	}
+
 	
 	public void ChooseDestination()
     {

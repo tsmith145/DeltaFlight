@@ -17,10 +17,11 @@
 ## (Comments)
 #Sample Feature Definition Template
 
+@login
 Feature: Test Login
 
 
-  
+  @login
   Scenario: Invalid User Name
     Given I am on the login webpage
     And I enter an invalid username 

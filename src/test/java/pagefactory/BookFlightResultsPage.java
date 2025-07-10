@@ -13,6 +13,9 @@ public class BookFlightResultsPage {
 	 private WebDriver driver;
 	 
 	 
+
+	 
+	 
 		
 		
 
@@ -36,7 +39,7 @@ public class BookFlightResultsPage {
 	}
 	
 	public boolean isSearchPageRoundtrip() {
-		List<WebElement> elements = driver.findElements(By.tagName("div")); // Example using tagName, replace with your desired locator
+		List<WebElement> elements = driver.findElements(By.id("div")); // Example using tagName, replace with your desired locator
 
 		boolean isRoundTrip=false;
 		for (WebElement div: elements) {
@@ -49,5 +52,6 @@ public class BookFlightResultsPage {
 		}
 		return isRoundTrip;
 	}
-
+	
+	
 }
