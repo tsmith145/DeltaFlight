@@ -2,12 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout Code') {
-            steps {
-                // Replace with your SCM details (e.g., Git, SVN)
-                git 'https://github.com/tsmith145/DeltaFlight.git'
-            }
-        }
+        
 
         stage('Build & Run Cucumber Tests') {
             steps {
