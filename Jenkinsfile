@@ -5,11 +5,19 @@ pipeline {
         
 
         stage('Build & Run Cucumber Tests') {
+			
             steps {
-                // For Maven projects:
+				
+				dir ('DeltaFlight'){
+					
+					 // For Maven projects:
                 sh 'mvn clean test -Dcucumber.optioms="@login"' 
                 // For Gradle projects:
-                // sh './gradlew clean test -Dcucumber.filter.tags="@your_tag"' 
+                // sh './gradlew clean test -Dcucumber.filter.tags="@your_tag"'
+                
+                
+				}
+                
             }
         }
 
