@@ -8,7 +8,7 @@ pipeline {
 			
             steps {
 				
-				dir ('C:/Users/Mjrlo/eclipse-workspace/cucumberProject/DeltaFlight'){
+				dir ('C:/Users/Mjrlo/eclipse-workspace/cucumberProject'){
 					
 					 // For Maven projects:
                 bat 'mvn clean test -Dcucumber.options="@login"' 
