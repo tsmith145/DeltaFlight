@@ -8,10 +8,10 @@ pipeline {
 			
             steps {
 				
-				dir ('DeltaFlight'){
+				dir ('C:\Users\Mjrlo\eclipse-workspace\cucumberProject\DeltaFlight'){
 					
 					 // For Maven projects:
-                sh 'mvn clean test -Dcucumber.optioms="@login"' 
+                bat 'mvn clean test -Dcucumber.optioms="@login"' 
                 // For Gradle projects:
                 // sh './gradlew clean test -Dcucumber.filter.tags="@your_tag"'
                 
