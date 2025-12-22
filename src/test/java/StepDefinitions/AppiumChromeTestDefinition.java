@@ -23,7 +23,7 @@ public class AppiumChromeTestDefinition {
 	public void setupTask() {
 		DesiredCapabilities desired_caps= new DesiredCapabilities();
 		desired_caps.setCapability("platformName", "Android");
-		desired_caps.setCapability("deviceName", "emulator-5554");
+		desired_caps.setCapability("deviceName", "Pixel 2");
 		//desired_caps.setCapability("appPackage", "com.android.chrome");
 		desired_caps.setCapability("automationName", "UiAutomator2");
 		desired_caps.setBrowserName("Chrome");

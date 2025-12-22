@@ -22,6 +22,6 @@ Feature: Run google chrome on appium
   
   Scenario: Appium
     Given Chrome is open on android phone
-    Then Im on delta.com
+    Then Im on chrome
   
  
