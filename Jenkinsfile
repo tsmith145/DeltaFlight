@@ -11,7 +11,7 @@ pipeline {
 				dir ('C:/Users/Mjrlo/eclipse-workspace/cucumberProject'){
 					
 					 // For Maven projects:
-                bat 'mvn clean test -Dcucumber.options="@login"' 
+                bat 'mvn clean test -Dtest="TestRunner"' 
                 // For Gradle projects:
                 // sh './gradlew clean test -Dcucumber.filter.tags="@your_tag"'
                 
@@ -25,6 +25,7 @@ pipeline {
             steps {
                 // Ensure the Cucumber reports plugin is installed in Jenkins
                 //cucumber buildStatus: 'UNSTABLE', fileIncludePattern: '**/*.json'
+                junit 'target/JSONReports/reports.xml'
                 cucumber buildStatus: 'UNCHANGED', customCssFiles: '', customJsFiles: '', failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
             }
         }
