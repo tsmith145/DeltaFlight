@@ -78,6 +78,20 @@
     <version>5.5.5</version>
     <scope>test</scope>
 </dependency>
+
+<dependency>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-report-plugin</artifactId>
+    <version>3.5.4</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
+<dependency>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-site-plugin</artifactId>
+    <version>4.0.0-M16</version>
+</dependency>
+  
   
   </dependencies>
   <build>
@@ -98,19 +112,7 @@
         
         
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-report-plugin -->
-<dependency>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-surefire-report-plugin</artifactId>
-    <version>3.5.4</version>
-</dependency>
 
-<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
-<dependency>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-site-plugin</artifactId>
-    <version>4.0.0-M16</version>
-</dependency>
-  
   </plugin>
   </plugins>
   </build>
