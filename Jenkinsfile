@@ -11,7 +11,7 @@ pipeline {
 				dir ('C:/Users/Mjrlo/eclipse-workspace/cucumberProject'){
 					
 					 // For Maven projects:
-                bat 'mvn clean test -Dtest=cucumberProject/src/test/java/StepDefinitions/TestRunner.java' 
+                bat 'mvn clean test -Dtest="TestRunner"' 
                 // For Gradle projects:
                 // sh './gradlew clean test -Dcucumber.filter.tags="@your_tag"'
                 
