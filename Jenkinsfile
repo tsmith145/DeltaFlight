@@ -8,10 +8,10 @@ pipeline {
 			
             steps {
 				
-				dir ('C:/Users/Mjrlo/eclipse-workspace/cucumberProject'){
+				dir ('C:/Users/Mjrlo/eclipse-workspace/cucumberProject/'){
 					
 					 // For Maven projects:
-                bat 'mvn clean test -Dcucumber.options="@login"' 
+                bat 'mvn clean test -Dtest=TestRunner.java' 
                 // For Gradle projects:
                 // sh './gradlew clean test -Dcucumber.filter.tags="@your_tag"'
                 
