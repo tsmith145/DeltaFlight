@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class) 
 @CucumberOptions(features="src/test/resources/Feature/LoginPageNCS.feature", glue={"StepDefinitions"},
 monochrome=true,
-plugin= {"pretty","junit:target/JSONReports/reports.xml"})
+plugin= {"pretty","html:target/JSONReports/reports.html"})
 
 
 public class TestRunner {
