@@ -25,7 +25,7 @@ pipeline {
             steps {
                 // Ensure the Cucumber reports plugin is installed in Jenkins
                 //cucumber buildStatus: 'UNSTABLE', fileIncludePattern: '**/*.json'
-                junit 'target/JSONReports/reports.xml'
+                junit 'target/JSONReports/reports.html'
                 cucumber buildStatus: 'UNCHANGED', customCssFiles: '', customJsFiles: '', failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.html', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
             }
         }
