@@ -24,7 +24,7 @@ pipeline {
         stage('Publish Cucumber Reports') {
             steps {
 				
-				dir ('C:/Users/Mjrlo/eclipse-workspace/cucumberProject/target/JSONReports/reports.html'){
+				dir ('C:/Users/Mjrlo/eclipse-workspace/cucumberProject/target/JSONReports'){
                 // Ensure the Cucumber reports plugin is installed in Jenkins
                 //cucumber buildStatus: 'UNSTABLE', fileIncludePattern: '**/*.json'
                 junit 'target/JSONReports/reports.html'
