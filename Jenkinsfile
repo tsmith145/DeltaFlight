@@ -24,12 +24,7 @@ pipeline {
         stage('Publish Cucumber Reports') {
             steps {
 				
-				dir ('C:/Users/Mjrlo/eclipse-workspace/cucumberProject/target'){
-                // Ensure the Cucumber reports plugin is installed in Jenkins
-                //cucumber buildStatus: 'UNSTABLE', fileIncludePattern: '**/*.json'
-                junit 'target/JSONReports/reports.html'
-                cucumber buildStatus: 'UNCHANGED', customCssFiles: '', customJsFiles: '', failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.html', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
-                }
+			publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'C:\\Users\\Mjrlo\\eclipse-workspace\\cucumberProject\\target\\surefire-reports\\Surefire suite', reportFiles: 'Surefire test.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
         }
     }
