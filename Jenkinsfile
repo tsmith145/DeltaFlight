@@ -28,7 +28,10 @@ pipeline {
             }
         }
         
-        post {
+        
+    }
+    
+    post {
         always {
             emailext (
                 subject: "${currentBuild.currentResult}: ${env.JOB_NAME}",
@@ -37,6 +40,5 @@ pipeline {
                 mimeType: 'text/html'
             )
         }
-    }
     }
 }
