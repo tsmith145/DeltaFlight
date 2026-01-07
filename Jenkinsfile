@@ -32,9 +32,9 @@ pipeline {
     }
     
     post {
-        dir('C:/Users/Mjrlo/eclipse-workspace/cucumberProject/target/surefire-reports/Surefire suite'){
+        always{
 			
-		   always {
+		   dir ('C:/Users/Mjrlo/eclipse-workspace/cucumberProject/target/surefire-reports/Surefire suite'){
             emailext (
                 subject: "${currentBuild.currentResult}: ${env.JOB_NAME}",
                 body: '${FILE, path="Surefire test.html"}', // Embeds HTML file content
